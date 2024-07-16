@@ -27,7 +27,7 @@ export const sendmessage = async (req,res,next)=>{
         receiverId,
         message
     })
-
+    console.log(newMessage)
     if(newMessage){
         conversation.messages.push(newMessage._id)
     }
@@ -39,7 +39,7 @@ export const sendmessage = async (req,res,next)=>{
 
     //instead if executing syncronously it will take time so we can execute parallely
 
-    await Promise.all([conversation.save(),newmessage.save()])
+    await Promise.all([conversation.save(),newMessage.save()])
     res.status(200).json(newMessage)
    } catch (error) {
      console.log(error)
